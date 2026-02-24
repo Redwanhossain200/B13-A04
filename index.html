@@ -18,19 +18,114 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
     integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-  
-    <!-- fav icon  -->
-  <link rel="icon" href="./jobs.png" type="image/x-icon">
 
   <style>
     body {
       font-family: "Geist", sans-serif;
+      background-color: #f8fafc;
+      color: #001f3f;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .active-tab {
+      background-color: #3b82f6 !important;
+      color: white !important;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    }
+
+    .border-interview {
+      border-left: 4px solid #10b981 !important;
+    }
+
+    .border-rejected {
+      border-left: 4px solid #ef4444 !important;
+    }
+
+    .job-card {
+      transition: all 0.3s;
+      animation: fadeIn 0.5s ease backwards;
+      border-left: 1px solid white;
+    }
+
+    .job-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+      border-color: #e5e7eb;
+    }
+
+    .active-green {
+      background-color: #10b981 !important;
+      color: white !important;
+      border-color: #10b981 !important;
+    }
+
+    .active-red {
+      background-color: #ef4444 !important;
+      color: white !important;
+      border-color: #ef4444 !important;
+    }
+
+    .delete-btn {
+      opacity: 0;
+      transform: scale(0.9) translateY(-10px);
+      pointer-events: none;
+      transition: all 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
 
 <body>
 
-</body>
+  <body class="p-5 md:p-10">
+
+    <div class="max-w-6xl mx-auto">
+      <!-- head section  -->
+      <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-7">Job Application Tracker</h1>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
+
+        <div
+          class="bg-white p-5 rounded-lg border border-white shadow-sm hover:-translate-y-1 hover:shadow-md transition cursor-pointer">
+          <p class="text-gray-500 font-medium text-sm">Total</p>
+          <p id="totalCount" class="text-3xl font-bold mt-2">8</p>
+        </div>
+
+        <div
+          class="bg-white p-5 rounded-lg border-l-4 border-[#10b981] shadow-sm hover:-translate-y-1 hover:shadow-md transition cursor-pointer">
+          <p class="text-gray-500 font-medium text-sm">Interview</p>
+          <p id="interviewCount" class="text-3xl font-bold text-[#10b981] mt-2">0</p>
+        </div>
+
+        <div
+          class="bg-white p-5 rounded-lg border-l-4 border-[#ef4444] shadow-sm hover:-translate-y-1 hover:shadow-md transition cursor-pointer">
+          <p class="text-gray-500 font-medium text-sm">Rejected</p>
+          <p id="rejectedCount" class="text-3xl font-bold text-[#ef4444] mt-2">0</p>
+        </div>
+      </div>
+
+      <hr class="border border-[#E6E7E9] mb-8">
+
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-xl font-semibold">Available Jobs</h2>
+        <span id="badgeCount" class="text-gray-400 font-medium text-[16px]">8 jobs</span>
+      </div>
+
+  </body>
 
 </html>
