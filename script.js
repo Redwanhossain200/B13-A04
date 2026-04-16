@@ -1,12 +1,11 @@
 let currentTab = 'all';
 
 window.onload = function () {
-  console.log("Welcome! Your Job Tracker is ready.");
+  console.log('Welcome! Your Job Tracker is ready.');
   updateCounts();
 };
 
 function updateCounts() {
-
   const cards = document.querySelectorAll('.job-card');
 
   let total = cards.length;
@@ -15,7 +14,6 @@ function updateCounts() {
   let visible = 0;
 
   cards.forEach(function (card) {
-
     const status = card.getAttribute('data-status');
     if (status === 'interview') interview++;
     if (status === 'rejected') rejected++;
@@ -25,7 +23,7 @@ function updateCounts() {
   document.getElementById('totalCount').innerText = total;
   document.getElementById('interviewCount').innerText = interview;
   document.getElementById('rejectedCount').innerText = rejected;
-  document.getElementById('badgeCount').innerText = visible + " jobs";
+  document.getElementById('badgeCount').innerText = visible + ' jobs';
 
   const noData = document.getElementById('no-data');
   const list = document.getElementById('jobList');
@@ -37,33 +35,35 @@ function updateCounts() {
     noData.classList.add('hidden');
     list.classList.remove('hidden');
   }
-  console.log("Update: Total=" + total + ", Interview=" + interview + ", Rejected=" + rejected);
+  console.log(
+    'Update: Total=' +
+      total +
+      ', Interview=' +
+      interview +
+      ', Rejected=' +
+      rejected,
+  );
 }
 
 function newTab(tab) {
-
   currentTab = tab;
-  console.log("Current Tab: " + tab.toUpperCase());
+  console.log('Current Tab: ' + tab.toUpperCase());
 
   document.getElementById('tab-all').classList.remove('active-tab');
   document.getElementById('tab-interview').classList.remove('active-tab');
   document.getElementById('tab-rejected').classList.remove('active-tab');
   document.getElementById('tab-' + tab).classList.add('active-tab');
 
-
   const cards = document.querySelectorAll('.job-card');
 
   cards.forEach(function (card) {
-
     const status = card.getAttribute('data-status');
 
     if (tab === 'all') {
       card.style.display = 'block';
-    }
-    else if (status === tab) {
+    } else if (status === tab) {
       card.style.display = 'block';
-    }
-    else {
+    } else {
       card.style.display = 'none';
     }
   });
@@ -72,7 +72,6 @@ function newTab(tab) {
 }
 
 function changeStatus(id, newStatus) {
-
   const card = document.getElementById(id);
   const oldStatus = card.getAttribute('data-status');
 
@@ -84,9 +83,9 @@ function changeStatus(id, newStatus) {
   }
 
   if (finalStatus !== 'none') {
-    console.log("Clicked: " + finalStatus.toUpperCase());
+    console.log('Clicked: ' + finalStatus.toUpperCase());
   } else {
-    console.log("Reset Status: " + id);
+    console.log('Reset Status: ' + id);
   }
 
   card.setAttribute('data-status', finalStatus);
@@ -126,21 +125,20 @@ function changeStatus(id, newStatus) {
   newTab(currentTab);
 }
 
-
 function removeJob(id) {
-  const confirmDelete = confirm("Delete this application?");
+  const confirmDelete = confirm('Delete this application?');
 
   if (confirmDelete) {
     const card = document.getElementById(id);
-    console.log("Delete: " + id);
+    console.log('Delete: ' + id);
 
     card.classList.add('delete-btn');
     setTimeout(() => {
       card.remove();
       updateCounts();
-      console.log(id + " has permanently removed.");
+      console.log(id + ' has permanently removed.');
     }, 300);
   } else {
-    console.log("Cancelled by user.");
+    console.log('Cancelled by user.');
   }
 }
